@@ -53,21 +53,49 @@ atom-text-editor {
 
 
 // Syntax styles
-
+// Comment lighten all colors
+// TODO Make them more greyish
 .syntax--comment {
   color: @light-gray;
+  
+  // .syntax--keyword {
+  //   color: lighten(@purple, 10%);
+	// 	
+	// 	&.syntax--control,
+	// 	&.syntax--operator {
+	// 		color: lighten(@purple, 10%);
+	// 	}
+  //   
+  //   &.syntax--other.syntax--special-method {
+  //     color: lighten(@blue, 10%);
+  //   }
+  //   
+  //   &.syntax--other.syntax--unit {
+  //     color: lighten(@orange, 10%);
+  //   }
+  // }
+  // 
+  // .syntax--string {
+  //   color: lighten(@green, 10%);
+  // }
+  // 
+  // .syntax--variable {
+  //   color: lighten(@red, 10%);
+  // 
+  //   &.syntax--interpolation {
+  //     color: lighten(@red, 10%);
+  //   }
+  // }
 }
 
 .syntax--keyword {
   color: @purple;
 
-  &.syntax--control {
+  &.syntax--control,
+	&.syntax--operator {
     color: @purple;
   }
 
-  &.syntax--operator {
-    color: @syntax-text-color;
-  }
 
   &.syntax--other.syntax--special-method {
     color: @blue;
@@ -137,16 +165,27 @@ atom-text-editor {
 }
 
 .syntax--punctuation {
+  
   &.syntax--definition {
+    
     &.syntax--comment {
       color: @light-gray;
     }
 
-    &.syntax--string,
-    &.syntax--variable,
-    &.syntax--parameters,
-    &.syntax--array {
+    &.syntax--parameters {
       color: @syntax-text-color;
+    }
+    
+    &.syntax--array {
+      color: @cyan;
+    }
+    
+    &.syntax--string {
+      color: @green;  
+    }
+    
+    &.syntax--variable {
+      color: @red;
     }
 
     &.syntax--heading,
@@ -168,10 +207,10 @@ atom-text-editor {
   &.syntax--section.syntax--embedded {
     color: darken(@red, 10%);
   }
-
 }
 
 .syntax--support {
+  
   &.syntax--class {
     color: @light-orange;
   }
@@ -186,9 +225,11 @@ atom-text-editor {
 }
 
 .syntax--entity {
+  
   &.syntax--name.syntax--function {
     color: @blue;
   }
+  
   &.syntax--name.syntax--type {
     color: @light-orange;
     text-decoration: underline;
@@ -197,6 +238,7 @@ atom-text-editor {
   &.syntax--other.syntax--inherited-class {
     color: @green;
   }
+  
   &.syntax--name.syntax--class, &.syntax--name.syntax--type.syntax--class {
     color: @light-orange;
   }
@@ -207,8 +249,14 @@ atom-text-editor {
 
   &.syntax--name.syntax--tag {
     color: @red;
-    text-decoration: underline;
   }
+  
+  // For "&" in scss
+  &.syntax--name.syntax--tag.syntax--scss {
+    color: @orange;
+    text-decoration: none;
+  }
+
 
   &.syntax--other.syntax--attribute-name {
     color: @orange;
@@ -219,7 +267,9 @@ atom-text-editor {
   }
 }
 
+
 .syntax--meta {
+  
   &.syntax--class {
     color: @light-orange;
   }
@@ -247,6 +297,7 @@ atom-text-editor {
 }
 
 .syntax--markup {
+  
   &.syntax--bold {
     color: @orange;
     font-weight: bold;
@@ -288,6 +339,7 @@ atom-text-editor {
 
 .syntax--source.syntax--gfm .syntax--markup {
   -webkit-font-smoothing: auto;
+  
   &.syntax--heading {
     color: @green;
   }
@@ -295,7 +347,46 @@ atom-text-editor {
 
 
 // Mini editor
-
 atom-text-editor[mini] .scroll-view {
   padding-left: 1px;
+}
+
+// Linter stuff
+// Warning
+atom-text-editor.editor .linter-highlight.linter-warning .region, .linter-highlight.linter-warning .region {
+  background: none;
+  border-bottom: @orange solid 3px;
+}
+
+// error
+atom-text-editor.editor .linter-highlight.linter-error .region, .linter-highlight.linter-error .region {
+  background: @red;
+  border-bottom: @red solid 3px;
+}
+
+
+/*------------------------------------*\
+		Perruche Styles
+\*------------------------------------*/
+
+// PHP Specials
+.syntax--php {
+  
+  &.syntax--namespace {
+    color: @light-orange;
+  }
+  
+  &.syntax--function-call {
+    color: @blue;
+  }
+}
+// Add border for panes
+.atom-dock-inner.atom-dock-open.left,
+atom-pane-container atom-pane {
+  border-right: 4px solid darken(@very-dark-gray, 10%);
+}
+
+// 
+.bracket-matcher .region {
+  border-bottom: @green solid 3px;
 }
