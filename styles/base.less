@@ -134,7 +134,7 @@ atom-text-editor {
   color: @red;
 
   &.syntax--interpolation {
-    color: darken(@red, 10%);
+    color: @red;
   }
 
   &.syntax--parameter.syntax--function {
@@ -380,8 +380,25 @@ atom-text-editor.editor .linter-highlight.linter-error .region, .linter-highligh
     color: @blue;
   }
 }
+
+
+
+
+// Twig specials
+.syntax--twig {  
+  &.syntax--function-call {
+    color: @blue;
+  }
+  
+  &.syntax--punctuation {
+    color: @light-orange;
+  }
+}
+
+
+
 // Add border for panes
-.atom-dock-inner.atom-dock-open.left,
+.atom-dock-inner.atom-dock-open.syntax--left, 
 atom-pane-container atom-pane {
   border-right: 4px solid darken(@very-dark-gray, 10%);
 }
